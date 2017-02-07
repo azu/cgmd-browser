@@ -40,6 +40,8 @@
     <button class="button is-outlined" id="js-clear-annotations">Reset Annotations</button>
 </footer>
 <script src="build/bundle.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.4.0/jquery.mark.min.js"></script>
 <script>
     // appEvent
     function update(content) {
@@ -48,6 +50,45 @@
     function attachImage(src, data) {
         document.querySelector(`img[src="${src}"]`).attr('src', data);
     }
+
+    function mark(keywords) {
+        if (keywords === '') {
+            $($article).unmark()
+            return
+        }
+        var arr = keywords.split(',')
+        var regs = arr.map((word) => {
+            var [actual, expect] = word.split('/')
+            if (expect.includes(actual)) {
+                return new RegExp(`${actual}(?!${expect.substring(actual.length)})`)
+            }
+            else {
+                return new RegExp(actual)
+            }
+        })
+        $($article).unmark()
+        regs.forEach((reg) => {
+            $($article).markRegExp(reg)
+        })
+    }
+
+    function jumpMarkedWord(word, index) {
+        var count = 0
+        $($article).find('[data-markjs]').each((i, el) => {
+            if (el.textContent === word) {
+                if (count === index) {
+                    count++
+                    var position = $(el).position().top - 10
+                    $(window).scrollTop(position)
+                    return false
+                }
+                else {
+                    count++
+                }
+            }
+        })
+    }
+</script>
 </script>
 </body>
 </html>
