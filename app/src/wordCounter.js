@@ -1,18 +1,18 @@
-module.exports =  function (markdown) {
-  var ignoreCount = false;
-  var count = 0;
+module.exports = function (markdown) {
+  var ignoreCount = false
+  var count = 0
   if (!markdown) {
-    return count;
+    return count
   }
   markdown.split('\n').forEach(function (line) {
-    //もし```か[jade]であれば、次の```か[/jade]まで無視
+    // もし```か[jade]であれば、次の```か[/jade]まで無視
     if (/^(```|\[\/?jade\])/.test(line)) {
-      ignoreCount = !ignoreCount ? true : false ;
+      ignoreCount = !ignoreCount ? true : false
     }
     if (ignoreCount) {
-      return;
+      return
     }
-    //不要な文字を消して数えたい文字列のみにする
+    // 不要な文字を消して数えたい文字列のみにする
     var filteredText = line
       // タグ
       .replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
@@ -31,8 +31,8 @@ module.exports =  function (markdown) {
       // 改行
       .replace(/\n+/g, '')
     if (filteredText.length) {
-      count += filteredText.length;
+      count += filteredText.length
     }
-  });
-  return count;
-};
+  })
+  return count
+}
