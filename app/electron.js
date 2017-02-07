@@ -5,6 +5,7 @@ const {app, BrowserWindow, ipcMain, Menu, dialog} = require('electron')
 const fs = require('fs')
 const CodegirdMarkdown = require('codegrid-markdown')
 const cgmd = new CodegirdMarkdown()
+const renderMarkdown = require("render-markdown-with-position");
 const wordCounter = require('./src/wordCounter')
 const watcher = {}
 const chokidar = require('chokidar')
@@ -266,7 +267,7 @@ function createWindow () {
         return rep
       })
 
-      const md = cgmd.render(replacedFile)
+      const md = renderMarkdown(replacedFile)
       mainWindow.webContents.send(filepath, {md, filepath})
       mainWindow.webContents.send(`${filepath}:count`, {count})
 
