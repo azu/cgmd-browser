@@ -294,7 +294,7 @@
           scroll = this.scroll[this.currentFilePath]
         }
         this.$refs.preview.executeJavaScript(`
-          update('${escape(md)}',${scroll})
+          update('${escape(md)}',${scroll}, "${this.currentFilePath}")
         `)
       },
       initSearchBox() {
