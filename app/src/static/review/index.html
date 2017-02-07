@@ -46,8 +46,11 @@
     // appEvent
     var $article = document.getElementById("js-article");
     $article.innerHTML = "";
-    function update(content) {
-        window.appEvent.emit("update", unescape(content));
+    function update(content, scroll, filePath) {
+        window.appEvent.emit("update", {
+            content: unescape(content),
+            filePath
+        });
     }
     function attachImage(src, data) {
         document.querySelector(`img[src="${src}"]`).attr('src', data);
@@ -90,7 +93,6 @@
             }
         })
     }
-</script>
 </script>
 </body>
 </html>
