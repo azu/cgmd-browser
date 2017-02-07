@@ -44,6 +44,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.4.0/jquery.mark.min.js"></script>
 <script>
     // appEvent
+    var $article = document.getElementById("js-article");
+    $article.innerHTML = "";
     function update(content) {
         window.appEvent.emit("update", unescape(content));
     }
