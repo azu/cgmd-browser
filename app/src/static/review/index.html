@@ -34,10 +34,13 @@
     </div>
 </article>
 <footer class="app-footer">
-    <button class="clipboard button is-outlined" id="js-copy-annotations" data-clipboard-text="Placeholder">Copy
+    <span class="app-footer-item annotation-count is-outlined">
+        Annotation Count: <span id="js-annotation-count" class="annotation-count-value"></span>
+    </span>
+    <button class="app-footer-item clipboard button is-outlined" id="js-copy-annotations" data-clipboard-text="Placeholder">Copy
         Annotations
     </button>
-    <button class="button is-outlined" id="js-clear-annotations">Reset Annotations</button>
+    <button class="app-footer-item button is-outlined" id="js-clear-annotations">Reset Annotations</button>
 </footer>
 <script src="build/bundle.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
