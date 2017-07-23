@@ -182,7 +182,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
   import {ipcRenderer} from 'electron'
   import {currentFilePath, searchState} from '../vuex/getters'
   import {mapActions, mapGetters} from 'vuex'

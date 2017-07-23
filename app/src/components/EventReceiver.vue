@@ -2,7 +2,7 @@
   <div style="display: none;"></div>
 </template>
 
-<script lang="babel">
+<script>
   import {ipcRenderer, remote} from 'electron'
   import {mapGetters, mapActions} from 'vuex'
   import OPEN from 'open'

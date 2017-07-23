@@ -17,7 +17,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
   import {mapGetters, mapActions} from 'vuex'
   import _ from 'lodash'
   export default{

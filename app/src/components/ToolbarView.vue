@@ -228,7 +228,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
   import FilepathView from './FooterView/FilepathView.vue'
   import HeightView from './FooterView/HeightView.vue'
   import WordcountView from './FooterView/WordcountView.vue'

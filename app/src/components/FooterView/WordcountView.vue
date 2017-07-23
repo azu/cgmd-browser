@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
   import {mapGetters} from 'vuex'
   export default{
     computed: {

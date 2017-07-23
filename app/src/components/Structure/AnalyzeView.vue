@@ -98,37 +98,15 @@
 </style>
 
 <template>
-  <div class="lint-items" v-show="textlintState">
-    <div class="lint-item"
-      v-for="(result, key) in results"
-      v-if="currentFilePath"
-      :key="key">
-      <input type="checkbox" :id="key" class="lint-item-toggle" @click="highlight" ref="check">
-      <label :for="key" class="lint-item-heading">
-        <span class="count">{{result.length}}</span>
-        <span class="key">
-          <span class="actual">{{key.split('/')[0]}}</span> /
-          <span class="expect">{{key.split('/')[1]}}</span>
-        </span>
-        <span class="expand">
-          <span class="icon icon-down-open"></span>
-          <span class="icon icon-up-open"></span>
-        </span>
-      </label>
-      <div class="lint-results">
-        <p v-for="(info, index) in result" class="lint-results-info" @click="jumpMarkedWord(key, index)">
-          <span class="lint-results-info-text">{{info.line}}</span>:
-          <span class="lint-results-info-text">{{info.column}}</span>
-        </p>
-      </div>
-    </div>
+  <div class="test-lint-items">
+    xxx
   </div>
 </template>
 
 <script>
   import {ipcRenderer} from 'electron'
   import {mapGetters} from 'vuex'
-  import mediator from '../mediator'
+  import mediator from '../../mediator'
   export default{
     data() {
       return {

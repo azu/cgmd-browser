@@ -100,24 +100,24 @@ let config = {
   }
 }
 
-if (process.env.NODE_ENV !== 'production') {
-  /**
-   * Apply ESLint
-   */
-  if (settings.eslint) {
-    config.module.preLoaders.push(
-      {
-        test: /\.js$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.vue$/,
-        loader: 'eslint-loader'
-      }
-    )
-  }
-}
+// if (process.env.NODE_ENV !== 'production') {
+//   /**
+//    * Apply ESLint
+//    */
+//   if (settings.eslint) {
+//     config.module.preLoaders.push(
+//       {
+//         test: /\.js$/,
+//         loader: 'eslint-loader',
+//         exclude: /node_modules/
+//       },
+//       {
+//         test: /\.vue$/,
+//         loader: 'eslint-loader'
+//       }
+//     )
+//   }
+// }
 
 /**
  * Adjust config for production settings

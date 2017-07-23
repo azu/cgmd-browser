@@ -107,7 +107,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
   import {mapGetters, mapActions} from 'vuex'
   import PATH from 'path'
   import {remote, ipcRenderer} from 'electron'

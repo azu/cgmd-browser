@@ -129,7 +129,7 @@
   </div>
 </template>
 
-<script lang="babel">
+<script>
   import dtree from 'directory-tree'
   import _ from 'lodash'
   import {mapActions, mapGetters} from 'vuex'
