@@ -13,6 +13,7 @@ const axios = require('axios')
 let mainWindow
 let config = {}
 const linter = require('./linter')
+const analyzeParagraph = require('./analyze-paragraph')
 
 if (process.env.NODE_ENV === 'development') {
   config = require('../config')
@@ -241,6 +242,11 @@ function createWindow () {
             mainWindow.webContents.send('textlintResult', {results, filepath})
           })
       }
+
+        analyzeParagraph(filepath).then(results => {
+            console.log(results);
+            mainWindow.webContents.send('analyzeResult', { results, filepath })
+        });
 //      const extension = path.extname(filepath)
       const count = wordCounter(file)
       // ローカルの画像を読み込んでbase64で埋め込む

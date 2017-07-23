@@ -37,24 +37,28 @@
     <span class="app-footer-item annotation-count is-outlined">
         Annotation Count: <span id="js-annotation-count" class="annotation-count-value"></span>
     </span>
-    <button class="app-footer-item clipboard button is-outlined" id="js-copy-annotations" data-clipboard-text="Placeholder">Copy
+    <button class="app-footer-item clipboard button is-outlined" id="js-copy-annotations"
+            data-clipboard-text="Placeholder">Copy
         Annotations
     </button>
     <button class="app-footer-item button is-outlined" id="js-clear-annotations">Reset Annotations</button>
 </footer>
 <script src="build/bundle.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.4.0/jquery.mark.min.js"></script>
 <script>
     // appEvent
     var $article = document.getElementById("js-article");
     $article.innerHTML = "";
+
     function update(content, scroll, filePath) {
         window.appEvent.emit("update", {
             content: unescape(content),
             filePath
         });
     }
+
     function attachImage(src, data) {
         document.querySelector(`img[src="${src}"]`).attr('src', data);
     }
@@ -67,18 +71,39 @@
         var arr = keywords.split(',')
         var regs = arr.map((word) => {
             var [actual, expect] = word.split('/')
-            if (expect.includes(actual)) {
+            if (Array.isArray(expect) && expect.includes(actual)) {
                 return new RegExp(`${actual}(?!${expect.substring(actual.length)})`)
-            }
-            else {
-                return new RegExp(actual)
+            } else {
+                return new RegExp(actual);
             }
         })
-        $($article).unmark()
+        $($article).unmark();
         regs.forEach((reg) => {
-            $($article).markRegExp(reg)
+            $($article).markRegExp(reg, {
+                acrossElements: true,
+                ignoreJoiners: true
+            })
         })
     }
+
+    function markText(escaped) {
+        if (escaped === '') {
+            $($article).unmark();
+            return
+        }
+        $($article).unmark();
+        let text = unescape(escaped);
+        $($article).mark(text, {
+            acrossElements: true
+        });
+    }
+
+    function markTextAndScroll(escaped) {
+        markText(escaped);
+        const position = $($article).find('[data-markjs]').position().top - 10;
+        $(window).scrollTop(position)
+    }
+
 
     function jumpMarkedWord(word, index) {
         var count = 0
